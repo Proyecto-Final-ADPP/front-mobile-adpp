@@ -28,21 +28,23 @@ const LoginForm = ({navigation}) => {
       <View style={styles.container}>
         <Card style={styles.card}>
           <Card.Content>
-            <Text variant="displaySmall">Inicio de Sesión</Text>
+            <Text variant='headlineSmall' style={styles.textTitulo}>Inicio de Sesión</Text>
           </Card.Content>
           <View style={styles.space}></View>
             <TextInput
+              style={styles.input}
               activeOutlineColor='#165589'
               mode='outlined'
               label="DNI"
               placeholder="Ingrese su DNI"
               value={dni}
               onChangeText={dni => setDni(dni)}
-              keyboardType="numeric"
+              inputMode='numeric'
               right={<TextInput.Icon icon="account" />}
             />
             <View style={styles.space}></View>
             <TextInput
+              style={styles.input}
               activeOutlineColor='#165589'
               mode="outlined"
               label="Contraseña"
@@ -57,11 +59,10 @@ const LoginForm = ({navigation}) => {
             />
             <View style={styles.space}></View>
 
-          <Card.Actions>
-            <Button>Cancel</Button>
-            <Button onPress={handlePress} buttonColor='#165589'
+            <Button onPress={handlePress} buttonColor='#165589' textColor='#fff' style={styles.boton}
             >Ingresar</Button>
-          </Card.Actions>
+          {/* <Card.Actions>
+          </Card.Actions> */}
         </Card>
       </View>
     </ImageBackground>
@@ -89,6 +90,21 @@ const styles = StyleSheet.create ( {
   space: {
     height: 10,
   },
-} )
+  textTitulo: {
+    textAlign: 'center',
+    color: '#165589',
+    fontWeight:'bold'
+  },
+  input: {
+    marginLeft: -25,
+    marginRight: -25,
+  },
+  boton: {
+    alignContent:'center',
+    marginLeft:50,
+    marginRight:50,
+    marginVertical:10
+  },
+})
 
 export default LoginForm;
