@@ -26,7 +26,9 @@ const LoginForm = ({navigation}) => {
       imageStyle={styles.imageStyle}
     >
       <View style={styles.container}>
+      
         <Card style={styles.card}>
+        
           <Card.Content>
             <Text variant='headlineSmall' style={styles.textTitulo}>Inicio de Sesión</Text>
           </Card.Content>
@@ -63,6 +65,7 @@ const LoginForm = ({navigation}) => {
             >Ingresar</Button>
           {/* <Card.Actions>
           </Card.Actions> */}
+          
         </Card>
       </View>
     </ImageBackground>

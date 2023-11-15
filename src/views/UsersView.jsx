@@ -81,9 +81,10 @@ const AdminUsers = () => {
             </View>
           </Modal>
         </Portal>
+        <UsuariosList/>
       </View>
 
-      <UsuariosList/>
+      
 
     </PaperProvider>
   );

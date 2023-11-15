@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AdminUsers from './UsersView';
 import TablaUsuarios from '../components/TablaUsuarios';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
   const [visible, setVisible] = useState(false);
 
@@ -21,51 +21,54 @@ const Home = ({navigation}) => {
   const navigateUsers = () => {
     navigation.navigate('Users');
   }
-  // const navigatePozos = () => {
-  //   navigation.navigate('Home');
-  // }
+  const navigatePozos = () => {
+    navigation.navigate('Pozo');
+  }
 
   const Tab = createBottomTabNavigator();
 
   return (
-
     <PaperProvider>
       <Appbar.Header mode='center-aligned'>
         <Appbar.Content title="Bienvenid@" />
         <Menu
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={<Appbar.Action icon="dots-vertical" onPress={openMenu} /> }>
-            <Menu.Item onPress={navigateUsers} title="Administrar Usuarios" />
-            <Menu.Item onPress={() => {}} title="Administrar Pozos" />
-            <Divider />
-            <Menu.Item onPress={() => {}} title="Cerrar Sesión" />
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={<Appbar.Action icon="dots-vertical" onPress={openMenu} />}>
+          <Menu.Item onPress={navigateUsers} title="Administrar Usuarios" />
+          <Menu.Item onPress={navigatePozos} title="Administrar Pozos" />
+          <Divider />
+          <Menu.Item onPress={() => { }} title="Cerrar Sesión" />
         </Menu>
       </Appbar.Header>
-      <Searchbar
-      iconColor= '#165589'
-      placeholder="Buscar"
-      />
-
       <View style={styles.space}></View>
 
-      <SegmentedButtons
-        buttons={[
-          {
-            //value: 'productor',
-            label: 'Productores',
-          },
-          {
-            //value: 'inyector',
-            label: 'Inyectores',
-          },
-        ]}
-      />
+      <View style={{ padding: 20 }}>
 
-      <CardPozo/>
-      <CardPozo/>
+        <Searchbar
+          iconColor='#165589'
+          placeholder="Buscar"
+        />
 
-      {/* <Tab.Navigator>
+        <View style={styles.space}></View>
+
+        <SegmentedButtons
+          buttons={[
+            {
+              //value: 'productor',
+              label: 'Productores',
+            },
+            {
+              //value: 'inyector',
+              label: 'Inyectores',
+            },
+          ]}
+        />
+
+        <CardPozo />
+        <CardPozo />
+
+        {/* <Tab.Navigator>
         <Tab.Screen name="Panel Usuarios" component={AdminUsers}  options={{
           tabBarLabel: 'Panel Usuarios',
           tabBarIcon: ({ color, size }) => {
@@ -81,8 +84,10 @@ const Home = ({navigation}) => {
         }}
         />
       </Tab.Navigator> */}
+      </View>
 
     </PaperProvider>
+
   );
 };
 
