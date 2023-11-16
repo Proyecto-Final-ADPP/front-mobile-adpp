@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginLeft:80,
     marginRight:80,
     marginTop:15,
-    marginBottom:-5,
+    marginBottom:8,
   },
   centerview: {
     flex:1,

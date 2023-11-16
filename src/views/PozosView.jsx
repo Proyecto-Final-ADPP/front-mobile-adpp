@@ -1,16 +1,30 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Modal, Portal, Text, Button, PaperProvider, TextInput } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import UsuariosList from '../components/TablaUsuarios';
+import { Picker } from '@react-native-picker/picker';
+import PozosList from '../components/TablaPozos';
 
 const AdminPozos = () => {
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   const containerStyle = {backgroundColor: 'white', padding: 20};
+
+  const [selectedTipo, setSelectedTipo] = useState('');
+
+  const handleChangeTipo = (itemTipo) => {
+    setSelectedTipo(itemTipo);
+  };
+
+  const [selectedSistema, setSelectedSistema] = useState('');
+
+  const handleChangeSistema = (itemSistema) => {
+    setSelectedSistema(itemSistema);
+  };
 
   return (
     <PaperProvider>
@@ -27,49 +41,39 @@ const AdminPozos = () => {
                 style={styles.input}
                 activeOutlineColor='#165589'
                 mode='outlined'
-                label="DNI"
-                placeholder="Ingrese su DNI"
+                label="Nombre"
+                placeholder="Ingrese el nombre del pozo"
                 // value={dni}
                 // onChangeText={dni => setDni(dni)}
-                inputMode='numeric'
+                //inputMode='numeric'
                 right={<TextInput.Icon icon="card-text" />}
               />
+              <View style={styles.containerPicker}>
+                <Picker
+                  selectedValue={selectedTipo}
+                  onValueChange={(itemTipo) => handleChangeTipo(itemTipo)}
+                >
+                  <Picker.Item label="Tipo de pozo" value="" />
+                  <Picker.Item label="Productor" value="productor" />
+                  <Picker.Item label="Inyector" value="inyector" />
+                </Picker>
+              </View>
+              <View style={styles.containerPicker}>
+                <Picker
+                  selectedValue={selectedSistema}
+                  onValueChange={(itemSistema) => handleChangeSistema(itemSistema)}
+                >
+                  <Picker.Item label="Sistema de produccion" value="" />
+                  <Picker.Item label="Gas lift inverso" value="productor" />
+                  <Picker.Item label="Gas lift convencional" value="inyector" />
+                  <Picker.Item label="Bombeo mecanico-AIB" value="inyector" />
+                </Picker>
+              </View>
               <TextInput
                 style={styles.input}
                 activeOutlineColor='#165589'
                 mode='outlined'
-                label="Apellido"
-                placeholder="Ingrese el/los Apellido/s"
-                // value={dni}
-                // onChangeText={dni => setDni(dni)}
-                right={<TextInput.Icon icon="account" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Nombres"
-                placeholder="Ingrese el/los Nombre/s"
-                // value={dni}
-                // onChangeText={dni => setDni(dni)}
-                right={<TextInput.Icon icon="account" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Correo Electrónico"
-                placeholder="Ingrese el Correo Electrónico"
-                // value={dni}
-                // onChangeText={dni => setDni(dni)}
-                inputMode='email'
-                right={<TextInput.Icon icon="email" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Fecha de Nacimiento"
+                label="Fecha de inicio"
                 placeholder="Ingrese la Fecha de Nacimiento"
                 // value={dni}
                 // onChangeText={dni => setDni(dni)}
@@ -81,7 +85,7 @@ const AdminPozos = () => {
             </View>
           </Modal>
         </Portal>
-        <UsuariosList/>
+        <PozosList/>
       </View>
 
       
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     color: '#165589',
     fontWeight:'bold'},
   input: {
-    marginTop: 8,
+    marginTop: 5,
   },
   boton: {
     alignContent:'center',
@@ -125,7 +129,15 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-
+  containerPicker: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#165589',
+    //paddingHorizontal: 10,
+    marginVertical: 10,
+    marginBottom: 0,
+    backgroundColor: 'white'
+  },
 });
 
 

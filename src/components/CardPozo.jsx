@@ -3,11 +3,16 @@ import { TouchableRipple, Text, Card } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 
-function CardPozo() {
+function CardPozo({navigation}) {
+  // const navigateInfoPozo = () => {
+  //   navigation.navigate('InfoPozo');
+  // }
+
+
   return (
     <TouchableRipple
     style={styles.card}
-    onPress={() => console.log('Pressed')}
+    //onPress={navigateInfoPozo}
     rippleColor="rgba(0, 0, 0, .32)"
     >
         <Card>
@@ -21,10 +26,10 @@ function CardPozo() {
 }
 
 const styles = StyleSheet.create({
-    card: {
-      marginTop: 10,
-    },
-  });
+  card: {
+    marginTop: 10,
+  },
+});
   
 
 export default CardPozo

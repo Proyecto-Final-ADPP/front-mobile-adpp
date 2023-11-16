@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { Card, Text, DataTable, Button } from 'react-native-paper';
+import { DataTable, Button } from 'react-native-paper';
 
-const UsuariosList = () => {
+const PozosList = () => {
   const [page, setPage] = useState(0);
-  const [numberOfItemsPerPageList] = useState([2, 3, 4]);
+  const [numberOfItemsPerPageList] = useState([2, 3, 4, 5, 6]);
   const [itemsPerPage, onItemsPerPageChange] = useState(
     numberOfItemsPerPageList[0]
   );
@@ -13,26 +13,32 @@ const UsuariosList = () => {
   const [items] = useState([
     {
       key: 1,
-      name: 'Rocio Larrosa',
-      rol: 'Admin',
+      nombre: 'Pozo 1',
+      tipo: 'Productor',
 
     },
     {
       key: 2,
-      name: 'Belen Gimenez',
-      rol: 'Supervisor',
+      nombre: 'Pozo 2',
+      tipo: 'Inyector',
 
     },
     {
       key: 3,
-      name: 'Juan Gomez',
-      rol: 'Operario',
+      nombre: 'Pozo 3',
+      tipo: 'Productor',
 
     },
     {
       key: 4,
-      name: 'Martin Velarde',
-      rol: 'Operario',
+      nombre: 'Pozo 4',
+      tipo: 'Productor',
+
+    },
+    {
+      key: 5,
+      nombre: 'Pozo 5',
+      tipo: 'Inyector',
 
     },
   ]);
@@ -47,21 +53,19 @@ const UsuariosList = () => {
   return (
     <DataTable style={{ flex: 1 }}>
       <DataTable.Header>
-        <DataTable.Title>Nombre y Apellido</DataTable.Title>
-        <DataTable.Title>Rol</DataTable.Title>
+        <DataTable.Title>Nombre</DataTable.Title>
+        <DataTable.Title>Tipo</DataTable.Title>
         <DataTable.Title>Accion</DataTable.Title>
-        {/* <DataTable.Title >Fat</DataTable.Title> */}
       </DataTable.Header>
 
       {items.slice(from, to).map((item) => (
         <DataTable.Row key={item.key}>
-          <DataTable.Cell>{item.name}</DataTable.Cell>
-          <DataTable.Cell>{item.rol}</DataTable.Cell>
+          <DataTable.Cell>{item.nombre}</DataTable.Cell>
+          <DataTable.Cell>{item.tipo}</DataTable.Cell>
           <DataTable.Cell>
             <Button style={{borderRadius: 50, alignContent:'center'}} buttonColor='#165589' icon="account-edit" mode="contained" onPress={() => console.log('Pressed')}>
               Modificar</Button> 
           </DataTable.Cell>
-          {/* <DataTable.Cell>{item.fat}</DataTable.Cell> */}
         </DataTable.Row>
       ))}
 
@@ -80,5 +84,4 @@ const UsuariosList = () => {
   );
 };
 
-export default UsuariosList;
-
+export default PozosList;

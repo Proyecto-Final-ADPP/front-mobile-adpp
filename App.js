@@ -6,6 +6,7 @@ import Home from './src/views/HomeView';
 import LoginForm from './src/views/LoginView';
 import AdminUsers from './src/views/UsersView';
 import AdminPozos from './src/views/PozosView';
+import PozoInfo from './src/views/PozoInfoView';
 
 export default function App() {
   const { Navigator, Screen } = createNativeStackNavigator();
@@ -19,6 +20,7 @@ export default function App() {
         <Screen name="Home" component={Home} options={{ title: 'Inicio' }} />
         <Screen name="Users" component={AdminUsers} options={{ title: 'Panel de Usuarios'}} />
         <Screen name="Pozo" component={AdminPozos} options={{ title: 'Administracion de Pozos'}} />
+        <Screen name="InfoPozo" component={PozoInfo} options={{ title: 'mksfnoisefn'}} />
       </Navigator>
     </NavigationContainer>
   );
