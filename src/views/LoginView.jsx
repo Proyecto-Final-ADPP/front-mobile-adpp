@@ -28,7 +28,6 @@ const LoginForm = ({navigation}) => {
       <View style={styles.container}>
       
         <Card style={styles.card}>
-        
           <Card.Content>
             <Text variant='headlineSmall' style={styles.textTitulo}>Inicio de Sesión</Text>
           </Card.Content>

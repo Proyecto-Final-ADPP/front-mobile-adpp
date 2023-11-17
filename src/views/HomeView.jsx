@@ -14,6 +14,8 @@ const Home = ({ navigation }) => {
 
   const [visible, setVisible] = useState(false);
 
+  const [value, setValue] = useState('');
+
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
@@ -52,16 +54,23 @@ const Home = ({ navigation }) => {
 
         <View style={styles.space}></View>
 
-        <SegmentedButtons
+        <SegmentedButtons onPress={() => console.log('Pressed')}
+          value={value}
+          onValueChange={setValue}
           buttons={[
             {
-              //value: 'productor',
+              value: 'todos',
+              label: 'Todos',
+            },
+            {
+              Value: 'productor',
               label: 'Productores',
             },
             {
-              //value: 'inyector',
+              value: 'inyector',
               label: 'Inyectores',
-            },
+            }
+            
           ]}
         />
 
