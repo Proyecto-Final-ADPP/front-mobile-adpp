@@ -20,7 +20,7 @@ export default function App() {
         <Screen name="Home" component={Home} options={{ title: 'Inicio' }} />
         <Screen name="Users" component={AdminUsers} options={{ title: 'Panel de Usuarios'}} />
         <Screen name="Pozo" component={AdminPozos} options={{ title: 'Administracion de Pozos'}} />
-        <Screen name="InfoPozo" component={PozoInfo} options={{ title: 'mksfnoisefn'}} />
+        <Screen name="InfoPozo" component={PozoInfo} options={{ title: 'Info Pozos'}} />
       </Navigator>
     </NavigationContainer>
   );

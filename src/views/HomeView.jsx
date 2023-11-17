@@ -65,8 +65,8 @@ const Home = ({ navigation }) => {
           ]}
         />
 
-        <CardPozo />
-        <CardPozo />
+        <CardPozo  navigation={navigation}/>
+        <CardPozo navigation={navigation}/>
 
         {/* <Tab.Navigator>
         <Tab.Screen name="Panel Usuarios" component={AdminUsers}  options={{

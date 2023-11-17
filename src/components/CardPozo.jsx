@@ -4,15 +4,16 @@ import { StyleSheet } from 'react-native';
 
 
 function CardPozo({navigation}) {
-  // const navigateInfoPozo = () => {
-  //   navigation.navigate('InfoPozo');
-  // }
+
+  const navigateInfoPozo = () => {
+    navigation.navigate('InfoPozo');
+  }
 
 
   return (
     <TouchableRipple
     style={styles.card}
-    //onPress={navigateInfoPozo}
+    onPress={navigateInfoPozo}
     rippleColor="rgba(0, 0, 0, .32)"
     >
         <Card>
