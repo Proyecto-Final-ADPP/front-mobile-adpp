@@ -4,20 +4,31 @@ import * as React from 'react';
 import { ImageBackground, View, StyleSheet, Image } from 'react-native';
 import { TextInput, Button, Card, Text } from 'react-native-paper';
 
+import { loginCall } from '../utils/callsToServer';
 
 const LoginForm = ({navigation}) => {
-
   const [dni, setDni] = useState("");
+  const [pass, setPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handlePress = () => {
-      navigation.navigate('Home');
-  }
+  const handlePress = async () => {
+      setError(null);
 
+      const response = await loginCall(dni, pass);
+
+      console.log(response)
+
+      if (response) {
+        navigation.navigate('Home');
+      } else {
+        setError('Los datos ingresados no son válidos');
+      }
+  }
   
   return(
     <ImageBackground
@@ -50,6 +61,7 @@ const LoginForm = ({navigation}) => {
               mode="outlined"
               label="Contraseña"
               placeholder="Ingrese su contraseña"
+              onChangeText={pass => setPass(pass)}
               secureTextEntry={!showPassword}
               right={
                 <TextInput.Icon
@@ -66,6 +78,20 @@ const LoginForm = ({navigation}) => {
           </Card.Actions> */}
           
         </Card>
+        {
+              error && (
+                <View>
+                  <View style={styles.space} />
+                  <Card>
+                    <Card.Content>
+                      <Text variant="titleLarge">
+                        { error }
+                      </Text>
+                    </Card.Content>
+                  </Card>
+                </View>
+              )
+            }
       </View>
     </ImageBackground>
   )
