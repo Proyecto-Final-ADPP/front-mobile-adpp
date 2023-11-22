@@ -19,7 +19,7 @@ function PozoInfo() {
           <Text style={{ marginTop: 20 }}  variant="headlineSmall">Tipo de Pozo: Productor</Text>
           <Text style={{ marginTop: 15 }} variant="headlineSmall">Sistema de produccion: Gas lift inverso </Text>
           <Divider />
-          <Button buttonColor='#165589' style={styles.boton}  icon="bell" mode="contained" onPress={showModal}>
+          <Button buttonColor='#165589' style={styles.boton}  icon="table-plus" mode="contained" onPress={showModal}>
             Cargar Datos
           </Button>
         </Card.Content>
@@ -29,7 +29,7 @@ function PozoInfo() {
         <Portal>
           <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
             <View style={styles.modalView}>
-              <Text variant='titleLarge' style={styles.textTitulo}>Registro</Text>
+              <Text variant='titleLarge' style={styles.textTitulo}>Registro Diario</Text>
               <TextInput
                 style={styles.input}
                 activeOutlineColor='#165589'

@@ -84,7 +84,7 @@ const LoginForm = ({navigation}) => {
                   <View style={styles.space} />
                   <Card>
                     <Card.Content>
-                      <Text variant="titleLarge">
+                      <Text variant="titleSmall">
                         { error }
                       </Text>
                     </Card.Content>
