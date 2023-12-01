@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
-import { DataTable, Button } from 'react-native-paper';
+import { StyleSheet, View } from "react-native";
+import { DataTable, Button, Card } from 'react-native-paper';
 
 const PozosList = () => {
   const [page, setPage] = useState(0);
@@ -51,37 +51,40 @@ const PozosList = () => {
   }, [itemsPerPage]);
 
   return (
-    <DataTable style={{ flex: 1 }}>
-      <DataTable.Header>
-        <DataTable.Title>Nombre</DataTable.Title>
-        <DataTable.Title>Tipo</DataTable.Title>
-        <DataTable.Title>Accion</DataTable.Title>
-      </DataTable.Header>
+    <View style={{ padding: 20 }}>
+      <Card>
+        <DataTable>
+          <DataTable.Header>
+            <DataTable.Title>Nombre</DataTable.Title>
+            <DataTable.Title>Tipo</DataTable.Title>
+            <DataTable.Title>Accion</DataTable.Title>
+          </DataTable.Header>
 
-      {items.slice(from, to).map((item) => (
-        <DataTable.Row key={item.key}>
-          <DataTable.Cell>{item.nombre}</DataTable.Cell>
-          <DataTable.Cell>{item.tipo}</DataTable.Cell>
-          <DataTable.Cell>
-            <Button style={{borderRadius: 50, alignContent:'center'}} buttonColor='#165589' icon="account-edit" mode="contained" onPress={() => console.log('Pressed')}>
-              Modificar</Button> 
-          </DataTable.Cell>
-        </DataTable.Row>
-      ))}
+          {items.slice(from, to).map((item) => (
+            <DataTable.Row key={item.key}>
+              <DataTable.Cell>{item.nombre}</DataTable.Cell>
+              <DataTable.Cell>{item.tipo}</DataTable.Cell>
+              <DataTable.Cell>
+                <Button style={{ borderRadius: 50, alignContent: 'center' }} buttonColor='#165589' icon="account-edit" mode="contained" onPress={() => console.log('Pressed')}>
+                  Modificar</Button>
+              </DataTable.Cell>
+            </DataTable.Row>
+          ))}
 
-      <DataTable.Pagination
-        page={page}
-        numberOfPages={Math.ceil(items.length / itemsPerPage)}
-        onPageChange={(page) => setPage(page)}
-        label={`${from + 1}-${to} of ${items.length}`}
-        numberOfItemsPerPageList={numberOfItemsPerPageList}
-        numberOfItemsPerPage={itemsPerPage}
-        onItemsPerPageChange={onItemsPerPageChange}
-        showFastPaginationControls
-        selectPageDropdownLabel={'Registros por página'}
-      />
-    </DataTable>
+          <DataTable.Pagination
+            page={page}
+            numberOfPages={Math.ceil(items.length / itemsPerPage)}
+            onPageChange={(page) => setPage(page)}
+            label={`${from + 1}-${to} of ${items.length}`}
+            numberOfItemsPerPageList={numberOfItemsPerPageList}
+            numberOfItemsPerPage={itemsPerPage}
+            onItemsPerPageChange={onItemsPerPageChange}
+            showFastPaginationControls
+            selectPageDropdownLabel={'Registros por página'}
+          />
+        </DataTable>
+      </Card>
+    </View>
   );
 };
-
 export default PozosList;

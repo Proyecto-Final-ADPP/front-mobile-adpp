@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Card, Text, DataTable, Button } from 'react-native-paper';
+import { View } from 'react-native';
 
 const UsuariosList = () => {
   const [page, setPage] = useState(0);
@@ -45,7 +46,9 @@ const UsuariosList = () => {
   }, [itemsPerPage]);
 
   return (
-    <DataTable style={{ flex: 1 }}>
+    <View style={{ padding: 20 }}>
+      <Card>
+      <DataTable>
       <DataTable.Header>
         <DataTable.Title>Nombre y Apellido</DataTable.Title>
         <DataTable.Title>Rol</DataTable.Title>
@@ -65,18 +68,22 @@ const UsuariosList = () => {
         </DataTable.Row>
       ))}
 
-      <DataTable.Pagination
-        page={page}
-        numberOfPages={Math.ceil(items.length / itemsPerPage)}
-        onPageChange={(page) => setPage(page)}
-        label={`${from + 1}-${to} of ${items.length}`}
-        numberOfItemsPerPageList={numberOfItemsPerPageList}
-        numberOfItemsPerPage={itemsPerPage}
-        onItemsPerPageChange={onItemsPerPageChange}
-        showFastPaginationControls
-        selectPageDropdownLabel={'Registros por página'}
+        <DataTable.Pagination
+          page={page}
+          numberOfPages={Math.ceil(items.length / itemsPerPage)}
+          onPageChange={(page) => setPage(page)}
+          label={`${from + 1}-${to} of ${items.length}`}
+          numberOfItemsPerPageList={numberOfItemsPerPageList}
+          numberOfItemsPerPage={itemsPerPage}
+          onItemsPerPageChange={onItemsPerPageChange}
+          showFastPaginationControls
+          selectPageDropdownLabel={'Registros por página'}
       />
-    </DataTable>
+        </DataTable>
+      </Card>
+    </View>
+    
+    
   );
 };
 

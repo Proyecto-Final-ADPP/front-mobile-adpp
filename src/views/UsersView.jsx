@@ -4,199 +4,25 @@ import { StyleSheet, View } from 'react-native';
 import { Modal, Portal, Text, Button, PaperProvider, TextInput } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import UsuariosList from '../components/TablaUsuarios';
+import RegisterUsers from './RegisterUserView';
 import { Picker } from '@react-native-picker/picker';
 import { registerCall, rolCall } from '../utils/callsToServer';
 
 
-const AdminUsers = () => {
-  const [dni, setDni] = useState("");
-  const [pass, setPass] = useState("");
-  const [nombres, setNombres] = useState('');
-  const [apellidos, setApellidos] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthdate, setBirthdate] = useState('Tue Nov 21 2023 10:29:34 GMT-0300');
-  const [selectedRol, setSelectedRol] = useState('');
+const AdminUsers = ({ navigation }) => {
 
-  const [roles, setRoles] = useState([]);
-  
-  const [visible, setVisible] = useState(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
-
-  const handleSubmit = async() => {
-    const data = {
-      names: nombres,
-      lastNames: apellidos,
-      username: dni,
-      birthDay: birthdate,
-      dni: dni,
-      email: email,
-      password: pass,
-      role: selectedRol,
-    }
-
-    const respuesta = await registerCall(data);
-
-    if (respuesta) {
-      console.log(respuesta)
-      hideModal()
-    } else {
-      console.log('No se pudo registrar :(')
-    }
+  const navigateRegisterUsers = () => {
+    navigation.navigate('RegistroUsers');
   }
-
-  const getRoles = async () => {
-    const respuesta = await rolCall();
-
-    if (respuesta) {
-      setRoles(respuesta);
-    } else {
-      if (Array.isArray(roles)) {
-        setRoles(roles)
-      } else {
-        setRoles([]);
-      }
-    }
-  }
-  
-  const limpiarCampos = () => {
-    setDni('');
-    setPass('');
-    setNombres('');
-    setApellidos('');
-    setEmail('');
-    setBirthdate('Tue Nov 21 2023 10:29:34 GMT-0300');
-    setSelectedRol('');
-
-    if (roles.length) {
-      setRoles(roles)
-      }else{
-        getRoles();
-      }
-  }
-
-
-  useEffect(() => {
-    if (visible) {
-      limpiarCampos();
-    }
-  }, [visible])
-
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
 
   return (
     <PaperProvider>
-      <Button style={styles.boton} onPress={showModal} mode='contained-tonal' icon="account-plus" buttonColor='#165589' textColor='#fff'>
+      <Button style={styles.boton} onPress={navigateRegisterUsers} mode='contained-tonal' icon="account-plus" buttonColor='#165589' textColor='#fff'>
         Registrar Nuevo Usuario
       </Button>
-      <View style={styles.centerview}>
-
-        <Portal>
-          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-            <View style={styles.modalView}>
-              <Text variant='titleLarge' style={styles.textTitulo}>Registro</Text>
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Apellido"
-                placeholder="Ingrese el/los Apellido/s"
-                value={apellidos}
-                onChangeText={value => setApellidos(value)}
-                right={<TextInput.Icon icon="account" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Nombres"
-                placeholder="Ingrese el/los Nombre/s"
-                value={nombres}
-                onChangeText={value => setNombres(value)}
-                right={<TextInput.Icon icon="account" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="DNI"
-                placeholder="Ingrese el DNI"
-                value={dni}
-                onChangeText={dni => setDni(dni)}
-                inputMode='numeric'
-                right={<TextInput.Icon icon="card-text" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Correo Electrónico"
-                placeholder="Ingrese el Correo Electrónico"
-                value={email}
-                onChangeText={value => setEmail(value)}
-                inputMode='email'
-                right={<TextInput.Icon icon="email" />}
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Contraseña"
-                placeholder="Ingrese la contraseña"
-                value={pass}
-                onChangeText={value => setPass(value)}
-                inputMode='text'
-                secureTextEntry={!showPassword}
-                right={
-                  <TextInput.Icon
-                    icon={showPassword ? 'eye' : 'eye-off'}
-                    onPress={togglePasswordVisibility}
-                  />
-                }  
-              />
-              <TextInput
-                style={styles.input}
-                activeOutlineColor='#165589'
-                mode='outlined'
-                label="Fecha de Nacimiento"
-                placeholder="Ingrese la Fecha de Nacimiento"
-                value={birthdate}
-                onChangeText={value => setBirthdate(value)}
-                //inputMode='numeric'
-                right={<TextInput.Icon icon="calendar" />}
-              />
-              <View style={styles.containerPicker}>
-                <Picker
-                  selectedValue={selectedRol}
-                  onValueChange={(itemRol) => setSelectedRol(itemRol)}
-                >
-                  <Picker.Item label="Seleccione el Rol" value="" />
-                  {
-                    (roles && Array.isArray(roles))
-                    ? (
-                    roles.map((rol, key) => (
-                      <Picker.Item key={key} label={rol.role} value={rol._id} />
-                    ))
-                    ) : null
-                  }
-                </Picker>
-              </View>
-              <Button onPress={handleSubmit} buttonColor='#165589' textColor='#fff' style={styles.boton}
-              >Agregar Usuario</Button>
-            </View>
-          </Modal>
-        </Portal>
+      <View>
         <UsuariosList/>
       </View>
-
-      
-
     </PaperProvider>
   );
 };
