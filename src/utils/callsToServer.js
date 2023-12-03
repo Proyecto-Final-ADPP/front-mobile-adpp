@@ -1,6 +1,6 @@
 import { callAPI } from './fetch';
 
-const endpoint = 'https://dbd4-190-226-159-183.ngrok.io/api';
+const endpoint = 'https://74ba-181-89-106-45.ngrok.io/api';
 
 export const loginCall = async (username, password) => {
     const data = { username, password }
